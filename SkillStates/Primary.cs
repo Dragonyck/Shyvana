@@ -79,7 +79,7 @@ namespace Shyvana
 				forceMagnitude *= 2;
 			}
 			base.PlayAnimation(layerName, "Attack" + comboState, "M1", attackDuration);
-			overlapAttack = base.InitMeleeOverlap(GroundLight.comboDamageCoefficient, hitEffectPrefab, base.GetModelTransform(), "Swing");
+			overlapAttack = base.InitMeleeOverlap(comboDamageCoefficient, hitEffectPrefab, base.GetModelTransform(), "Swing");
 			base.characterBody.SetAimTimer(attackDuration + 1f);
 			hitEffectPrefab = dragonForm ? Prefabs.dragonSwingHitEffect : Prefabs.swingHitEffect;
 			overlapAttack.hitEffectPrefab = hitEffectPrefab;

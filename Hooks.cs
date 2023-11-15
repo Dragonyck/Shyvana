@@ -24,6 +24,7 @@ namespace Shyvana
 {
     class Hook
     {
+        private static int tick = 0;
         internal static void Hooks()
         {
             RecalculateStatsAPI.GetStatCoefficients += RecalculateStatsAPI_GetStatCoefficients;
@@ -32,6 +33,15 @@ namespace Shyvana
 
         private static void HealthComponent_TakeDamage(On.RoR2.HealthComponent.orig_TakeDamage orig, HealthComponent self, DamageInfo damageInfo)
         {
+            if (damageInfo.HasModdedDamageType(Prefabs.ruin) && damageInfo.attacker)
+            {
+                tick++;
+                var health = damageInfo.attacker.GetComponent<HealthComponent>();
+                if (health)
+                {
+                    health.Heal(damageInfo.damage * 0.2f, default(ProcChainMask));
+                }
+            }
             if (damageInfo.damageType == (DamageType.BypassBlock | DamageType.AOE) && damageInfo.attacker.GetComponent<ShyvanaBehaviour>())
             {
                 damageInfo.damageType = DamageType.Generic;

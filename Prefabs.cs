@@ -20,6 +20,7 @@ using System.Linq;
 using R2API.ContentManagement;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Rendering.PostProcessing;
+using static R2API.DamageAPI;
 
 namespace Shyvana
 {
@@ -50,12 +51,15 @@ namespace Shyvana
         internal static Material redIndicatorMat;
         internal static Material baseArcMat;
         internal static Material redArcMat;
+        internal static ModdedDamageType ruin;
         internal static T Load<T>(string path)
         {
             return Addressables.LoadAssetAsync<T>(path).WaitForCompletion();
         }
         internal static void CreatePrefabs()//matVoltaileBatteryExplosion 
         {
+            ruin = ReserveDamageType();
+
             Material matOmniExplosion1Engi = Load<Material>("RoR2/Base/Engi/matOmniExplosion1Engi.mat");
             Material matEngiExplosion = Load<Material>("RoR2/Base/Engi/matEngiExplosion.mat");
             Material matElitePoisonDarkTrail = Load<Material>("RoR2/Base/ElitePoison/matElitePoisonDarkTrail.mat");
@@ -281,6 +285,7 @@ namespace Shyvana
                     p.material = Load<Material>("RoR2/Base/Croco/matCrocoGooLarge.mat");
                 }
             }
+            fireBallProjectileDotZone.AddComponent<ModdedDamageTypeHolderComponent>().Add(ruin);
             ContentAddition.AddProjectile(fireBallProjectileDotZone);
 
             fireBallProjectileExplosion = PrefabAPI.InstantiateClone(Load<GameObject>("RoR2/Base/BFG/BeamSphereExplosion.prefab"), "ShyvanaFireBallProjectileExplosion", false);

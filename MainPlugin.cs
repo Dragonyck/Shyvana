@@ -24,7 +24,7 @@ using UnityEngine.AddressableAssets;
 [assembly: SecurityPermission(SecurityAction.RequestMinimum, SkipVerification = true)]
 namespace Shyvana
 {
-    
+    [BepInIncompatibility("com.Wolfo.WolfoQualityOfLife")]
     [BepInDependency(R2API.ContentManagement.R2APIContentManager.PluginGUID)]
     [BepInDependency(R2API.LanguageAPI.PluginGUID)]
     [BepInDependency(R2API.LoadoutAPI.PluginGUID)]
@@ -32,13 +32,14 @@ namespace Shyvana
     [BepInDependency(R2API.PrefabAPI.PluginGUID)]
     [BepInDependency(R2API.SoundAPI.PluginGUID)]
     [BepInDependency(R2API.RecalculateStatsAPI.PluginGUID)]
+    [BepInDependency(R2API.DamageAPI.PluginGUID)]
     [BepInPlugin(MODUID, MODNAME, VERSION)]
     [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod, VersionStrictness.EveryoneNeedSameModVersion)]
     public class MainPlugin : BaseUnityPlugin
     {
         public const string MODUID = "com.Dragonyck.Shyvana";
         public const string MODNAME = "Shyvana";
-        public const string VERSION = "1.0.0";
+        public const string VERSION = "1.0.2";
         public const string SURVIVORNAME = "Shyvana";
         public const string SURVIVORNAMEKEY = "SHYVANA";
         public const string DSURVIVORNAME = "Shyvana (Dragon Form)";
@@ -306,7 +307,7 @@ namespace Shyvana
             bodyComponent.baseMoveSpeed = 7;
             bodyComponent.levelMoveSpeed = 0;
             bodyComponent.baseAcceleration = 110;
-            bodyComponent.baseJumpPower = 18;
+            bodyComponent.baseJumpPower = 20;
             bodyComponent.levelJumpPower = 0;
             bodyComponent.baseDamage = 12;
             bodyComponent.levelDamage = 2.4f;
@@ -315,7 +316,7 @@ namespace Shyvana
             bodyComponent.baseCrit = 1;
             bodyComponent.levelCrit = 0;
             bodyComponent.baseArmor = 20;
-            bodyComponent.levelArmor = 0;
+            bodyComponent.levelArmor = 3;
             bodyComponent.baseJumpCount = 99;
             bodyComponent.sprintingSpeedMultiplier = 1.45f;
             bodyComponent.wasLucky = false;
@@ -353,6 +354,8 @@ namespace Shyvana
             modelLocator.noCorpse = false;
             modelLocator.normalizeToFloor = false;
             modelLocator.preserveModel = false;
+
+            dragonCharacterPrefab.GetComponent<Interactor>().maxInteractionDistance = 6;
 
             ChildLocator childLocator = model.GetComponent<ChildLocator>();
 

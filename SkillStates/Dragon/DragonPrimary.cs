@@ -30,7 +30,7 @@ namespace Shyvana
         public override void SetState()
 		{
 			DragonPrimary groundLight = new DragonPrimary();
-			groundLight.comboState = comboState == 3 ? 1 : comboState + 1;
+			groundLight.comboState = comboState == 2 ? 1 : comboState + 1;
 			outer.SetNextState(groundLight);
 		}
         public override InterruptPriority GetMinimumInterruptPriority()
