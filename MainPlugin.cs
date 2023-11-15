@@ -618,7 +618,7 @@ namespace Shyvana
         void DragonUtilitySetup()
         {
             SkillLocator component = dragonCharacterPrefab.GetComponent<SkillLocator>();
-            LanguageAPI.Add("SHYVANARUIN_KEYWORD", "<style=cKeywordName>Ruin</style><style=cSub>Ruined areas deal <style=cIsDamage>2240% damage over time</style>.");
+            LanguageAPI.Add("SHYVANARUIN_KEYWORD", "<style=cKeywordName>Ruin</style><style=cSub>Ruined areas deal <style=cIsDamage>2240% damage over time</style>, <style=cIsHealing>heals 20%</style> of the damage dealt.");
             LanguageAPI.Add(DSURVIVORNAMEKEY + "_UTIL", "Draconic Leap");
             LanguageAPI.Add(DSURVIVORNAMEKEY + "_UTIL_DESCRIPTION", "Flap your wings and leap in a direction, dealing <style=cIsDamage>320% damage</style>, and <color=#5EE3AA>Ruining</color> an area on impact.");
 
